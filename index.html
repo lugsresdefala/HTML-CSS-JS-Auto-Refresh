@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      background: linear-gradient(135deg, #bd955c, #dbc194);
+      color: #fff;
+      backdrop-filter: blur(50px);
+      margin: 35px;
+      border: groove 4px #fff;
+      filter: drop-shadow(2px 16px 18px rgba(249, 220, 210, 0.8));
+      display: block;
+      overflow: absolute;
+    }
+
+    h2 {
+      color: #450000;
+      border-bottom: groove 4px #690000;
+      padding-bottom: 0px;
+      margin-bottom: 0px;
+      box-sizing: border-box;
+      background-color: radial-gradient(circle 340px at 45% 55%, #82000055, transparent);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: center;
+      border-bottom: 2px ridge #fff;
+    }
+
+    th {
+      background: radial-gradient(circle 340px at 15% 55%, #dbc194, #faded2);
+      color: #820000;
+      backdrop-filter: blur(140px);
+      font-size: 14px;
+      border: none;
+      z-index: -9;
+      filter: drop-shadow(5px 3px 12px rgba(255, 233, 219, 0.5));
+    }
+
+    td {
+      background: radial-gradient(circle 340px at 45% 55%, #82000055, #690000);
+      backdrop-filter: blur(30%);
+      border-right: 2px groove transparent;
+    }
+
+    tr:hover {
+      background: linear-gradient(to bottom, #450000, #820000);
+    }
+
+    .accordion {
+      background: radial-gradient(circle 340px at 45% 55%, #82000055, #690000);
+      color: #ffffff;
+      font-weight: 600;
+      font-family: 'Josefin Sans', sans-serif;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      border: 2px ridge #dbc194;
+      text-align: left;
+      outline: none;
+      font-size: 16px;
+      transition: filter 0.8s ease-in-out;
+      z-index: 9;
+    }
+
+    .active,
+    .accordion:hover {
+      background: radial-gradient(circle 340px at 45% 55%, #82000055, #690000),
+        radial-gradient(circle 90px at 75% 70%, #bd955c, #dbc194),
+        radial-gradient(circle 130px at 15% 85%, #820000aa, #bd055c);
+      filter: drop-shadow(2px 5px 20px rgba(255, 255, 255, 0.6));
+      filter: contrast(115%);
+      transition: filter 0.8s ease-in-out;
+      z-index: 9;
+    }
+
+    .panel {
+      padding: 0 18px;
+      display: none;
+      background: radial-gradient(circle 340px at 45% 55%, #82000055, #690000);
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+      backdrop-filter: blur(228px);
+      filter: drop-shadow(3px 5px 9px #FFF);
+      z-index: 12;
+    }
+
+    .accordion-item {
+      margin-bottom: 10px;
+    }
+
+    .accordion-item-header {
+      background-color: #450000;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .accordion-item-body {
+      display: none;
+      padding: 10px;
+    }
+
+    .accordion-item-body table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .accordion-item-body th,
+    .accordion-item-body td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 2px ridge #dbc194;
+    }
+
+    .accordion-item-body th {
+      background-color: #450000;
+    }
+
+    .accordion-item-body tr:nth-child(even) {
+      background-color: #820000;
+    }
+
+    .accordion-item-body tr:hover {
+      background-color: #820000;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+  </style>
+  <script>
+    function redirectToForm(rowNumber) {
+      // Extract the row data
+      var table = document.getElementById("table");
+      var rowData = table.rows[rowNumber].cells;
+
+      // Set the input field value
+      document.getElementsByName("número")[0].value = rowData[1].innerText; // Assuming AULA is in the second column
+
+      // Scroll to the form
+      document.getElementById("formulario").scrollIntoView({behavior: "smooth"});
+    }
+  </script>
+</head>
+
+<body>
+  <button class="accordion">SEÇÃO I - DIRETRIZES DO ATENDIMENTO</button>
+  <div class="panel">
+    <table id="table">
+      <tr>
+        <th>DATA</th>
+        <th>AULA</th>
+        <th>TEMA</th>
+        <th>TÓPICOS</th>
+        <th>RESPONSÁVEL</th>
+        <th>REFERÊNCIAS</th>
+      </tr>
+      <tr>
+        <td>07/03/2024</td>
+        <td>1</td>
+        <td>Primeira Avaliação de Reprodução Humana</td>
+        <td>· Abordagem inicial pela equipe · Itens importantes da anamnese · Infertilidade enquanto diagnóstico</td>
+        <td><a href="#form" onclick="redirectToForm(1)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>14/03/2024</td>
+        <td>2</td>
+        <td>Avaliação de Ciclo - Parte 1</td>
+        <td>· Cancelamento antes do trigger · Ausência de oócitos maduros na aspiração folicular · Poor ovarian response
+        </td>
+        <td><a href="#form" onclick="redirectToForm(2)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>21/03/2024</td>
+        <td>3</td>
+        <td>Avaliação de Ciclo - Parte 2</td>
+        <td>· Ausência de blastocistos ou de embriões euplóides · Beta-hCG negativo e gestações não evolutivas</td>
+        <td><a href="#form" onclick="redirectToForm(3)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>28/03/2024</td>
+        <td>4</td>
+        <td>Avaliação de Ciclo - Parte 3</td>
+        <td>· Psicologia do Luto</td>
+        <td><a href="#form" onclick="redirectToForm(4)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+    </table>
+  </div>
+
+  <button class="accordion">SEÇÃO II -DIAGNÓSTICOS E CONDUTAS EM INFERTILIDADE</button>
+  <div class="panel">
+    <table id=“table”>
+      <tr>
+        <th>DATA</th>
+        <th>AULA</th>
+        <th>TEMA</th>
+        <th>TÓPICOS</th>
+        <th>RESPONSÁVEL</th>
+        <th>REFERÊNCIAS</th>
+      </tr>
+      <tr>
+        <td>07/04/2024</td>
+        <td>5</td>
+        <td>Fator Ovular – Parte 1</td>
+        <td>· Idade e reserva ovariana · Condições clínicas</td>
+        <td><a href="#form" onclick="redirectToForm(5)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>21/04/2024</td>
+        <td>6</td>
+        <td>Fator Ovular – Parte 2</td>
+        <td>· Síndrome dos Ovários Policísticos · Insuficiência Ovariana Prematura</td>
+        <td><a href="#form" onclick="redirectToForm(6)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>02/05/2024</td>
+        <td>7</td>
+        <td>Fator Uterino</td>
+        <td>· Propedêutica · Alterações estruturais adquiridas · Variações anatômicas congênitas</td>
+        <td><a href="#form" onclick="redirectToForm(7)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>16/05/2024</td>
+        <td>8</td>
+        <td>Fator Tubo-Peritoneal</td>
+        <td>· Opções para um diagnóstico impreciso · Endometriose</td>
+        <td><a href="#form" onclick="redirectToForm(8)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>30/05/2024</td>
+        <td>9</td>
+        <td>Fator Seminal – Parte 1</td>
+        <td>· Desdobramentos do espermograma · Hipogonadismo (Quando encaminhar ao Urologista)</td>
+        <td><a href="#form" onclick="redirectToForm(9)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>06/06/2024</td>
+        <td>10</td>
+        <td>Fator Seminal – Parte 2</td>
+        <td>· Desordens da ejaculação · Disfunção erétil</td>
+        <td><a href="#form" onclick="redirectToForm(10)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>20/06/2024</td>
+        <td>11</td>
+        <td>Infertilidade sem Causa Aparente</td>
+        <td>· Um diagnóstico sobre o tempo</td>
+        <td><a href="#form" onclick="redirectToForm(11)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+    </table>
+  </div>
+  </div>
+
+  <button class="accordion">SEÇÃO III - TÉCNICAS DE REPRODUÇÃO ASSISTIDA</button>
+  <div class="panel">
+    <table id=“table”>
+      <tr>
+        <th>DATA</th>
+        <th>AULA</th>
+        <th>TEMA</th>
+        <th>TÓPICOS</th>
+        <th>RESPONSÁVEL</th>
+        <th>REFERÊNCIAS</th>
+      </tr>
+      <tr>
+        <td>04/07/2024</td>
+        <td>12</td>
+        <td>Seleção de Agentes Farmacológicos</td>
+        <td>• Desenvolvimento folicular• Modulação hipotálamo-hipofisária• Trigger</td>
+        <td><a href="#form" onclick="redirectToForm(12)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>18/07/2024</td>
+        <td>13</td>
+        <td>Relações Sexuais Programadas</td>
+        <td>• Consciência da fertilidade• Indicando intervenções</td>
+        <td><a href="#form" onclick="redirectToForm(13)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>08/08/2024</td>
+        <td>14</td>
+        <td>Inseminação Intrauterina</td>
+        <td>• Fatores Prognósticos•Indicações possíveis•Procedimento</td>
+        <td><a href="#form" onclick="redirectToForm(14)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>22/08/2024</td>
+        <td>15</td>
+        <td>Fertilização in vitro</td>
+        <td>• Estimulação ovariana controlada• Punção ovariana e aspiração folicular</td>
+        <td><a href="#form" onclick="redirectToForm(15)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>12/09/2024</td>
+        <td>16</td>
+        <td>Classificação embrionária</td>
+        <td>• Cultivo embrionário estendido e Classificação• Diagnóstico genético pré-implantacional</td>
+        <td><a href="#form" onclick="redirectToForm(16)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>19/09/2024</td>
+        <td>17</td>
+        <td>Transferência contígua ou congelamento de embriões</td>
+        <td>• Transferência após Descongelamento de Óvulos ou Embriões• Endométrio fino• Suporte de Fase Lútea</td>
+        <td><a href="#form" onclick="redirectToForm(17)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>26/09/2024</td>
+        <td>18</td>
+        <td>Anestesia em Reprodução Assistida</td>
+        <td></td>
+        <td><a href="#form" onclick="redirectToForm(18)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>10/10/2024</td>
+        <td>19</td>
+        <td>Procedimentos Urológicos</td>
+        <td></td>
+        <td><a href="#form" onclick="redirectToForm(19)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+    </table>
+  </div>
+  </div>
+  <button class="accordion">SEÇÃO IV - MANEJO DE INTERCORRÊNCIAS</button>
+  <div class="panel">
+    <table id=“table”>
+      <tr>
+        <th>DATA</th>
+        <th>AULA</th>
+        <th>TEMA</th>
+        <th>TÓPICOS</th>
+        <th>RESPONSÁVEL</th>
+        <th>REFERÊNCIAS</th>
+      </tr>
+      <tr>
+        <td>24/10/2024</td>
+        <td>20</td>
+        <td>Intercorrências nos tratamentos</td>
+        <td>• Dor e Sangramento após Punção• Síndrome de Hiperestimulação Ovariana• Lesão acidental de estruturas
+          adjacentes• Estenose do Colo Uterino</td>
+        <td><a href="#form" onclick="redirectToForm(20)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+    </table>
+  </div>
+  </div>
+
+  <button class="accordion">SEÇÃO V - PRESERVAÇÃO DA FERTILIDADE</button>
+  <div class="panel">
+    <table id=“table”>
+      <tr>
+        <th>DATA</th>
+        <th>AULA</th>
+        <th>TEMA</th>
+        <th>TÓPICOS</th>
+        <th>RESPONSÁVEL</th>
+        <th>REFERÊNCIAS</th>
+      </tr>
+      <tr>
+        <td>07/11/2024</td>
+        <td>21</td>
+        <td>Opções de criopreservação</td>
+        <td>• Criopreservação de gametas• Criopreservação de embriões• Criopreservação de tecidos</td>
+        <td><a href="#form" onclick="redirectToForm(21)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+    </table>
+  </div>
+  </div>
+  <button class="accordion">SEÇÃO VI - ESPECIFICIDADES PARA PESSOAS LGBTQIA+</button>
+  <div class="panel">
+    <table id=“table”>
+      <tr>
+        <th>DATA</th>
+        <th>AULA</th>
+        <th>TEMA</th>
+        <th>TÓPICOS</th>
+        <th>RESPONSÁVEL</th>
+        <th>REFERÊNCIAS</th>
+      </tr>
+      <tr>
+        <td>14/11/2024</td>
+        <td>22</td>
+        <td>Um sistema de saúde inclusivo - Parte 1</td>
+        <td>•Glossário de Termos•Reparação de Entraves ao Acesso•Intervenções Corporais na Infância e
+          Adolescência•Revisando a abordagem de pessoas intersexo •Bloqueio puberal em adolescentes trans</td>
+        <td><a href="#form" onclick="redirectToForm(22)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>21/11/2024</td>
+        <td>23</td>
+        <td>Um sistema de saúde inclusivo Parte - 2</td>
+        <td>•Manejo da Hormonização no Planejamento Reprodutivo•Hormonização transmasculina•Hormonização
+          transfeminina•Criopreservação de células germinativas•Famílias Diversas, Reprodução Humana</td>
+        <td><a href="#form" onclick="redirectToForm(23)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+    </table>
+  </div>
+  </div>
+  <button class="accordion">SEÇÃO VII: REGRAS E CONSIDERAÇÕES ÉTICO-LEGAIS</button>
+  <div class="panel">
+    <table id=“table”>
+      <tr>
+        <th>DATA</th>
+        <th>AULA</th>
+        <th>TEMA</th>
+        <th>TÓPICOS</th>
+        <th>RESPONSÁVEL</th>
+        <th>REFERÊNCIAS</th>
+      </tr>
+      <tr>
+        <td>05/12/2021</td>
+        <td>24</td>
+        <td>Diversidade nas construções da parentalidade</td>
+        <td>• Bancos de Sêmen• Doação de Óvulos• Doação por Familiar• Doação de Embriões</td>
+        <td><a href="#form" onclick="redirectToForm(24)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>12/12/2024</td>
+        <td>25</td>
+        <td>Útero: Considerações éticas, clínicas e filosóficas</td>
+        <td>• Tecnologias biomédicas• Geração de necessidades• Transplante uterino</td>
+        <td><a href="#form" onclick="redirectToForm(25)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>09/01/2025</td>
+        <td>26</td>
+        <td>Resoluções de Diretoria Colegiada</td>
+        <td>•Manipulação de células germinativas para uso próprio•Manipulação de oócitos para doação•Manipulação de
+          espermatozóides para doação•Indicando e confirmando o tratamento de Sífilis</td>
+        <td><a href="#form" onclick="redirectToForm(26)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>16/01/2025</td>
+        <td>27</td>
+        <td>Posicionamentos do Conselho Federal de Medicina</td>
+        <td>• Resoluções, Pareceres e Leis</td>
+        <td><a href="#form" onclick="redirectToForm(27)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+    </table>
+  </div>
+  </div>
+  <button class="accordion">SEÇÃO VIII: INVESTIGAÇÕES COMPLEMENTARES RESTRITAS</button>
+  <div class="panel">
+    <table id=“table”>
+      <tr>
+        <th>DATA</th>
+        <th>AULA</th>
+        <th>TEMA</th>
+        <th>TÓPICOS</th>
+        <th>RESPONSÁVEL</th>
+        <th>REFERÊNCIAS</th>
+      </tr>
+      <tr>
+        <td>23/01/2025</td>
+        <td>28</td>
+        <td>Desfechos negativos recorrentes</td>
+        <td>• Falha de Implantação• Perda Gestacional Precoce</td>
+        <td><a href="#form" onclick="redirectToForm(28)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>06/02/2025</td>
+        <td>29</td>
+        <td>Testes laboratoriais restritos</td>
+        <td>• Testes genéticos• Avaliações imunológicas</td>
+        <td><a href="#form" onclick="redirectToForm(29)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+    </table>
+  </div>
+  </div>
+
+  <button class="accordion">SEÇÃO IX: SEGUIMENTO OBSTÉTRICO</button>
+  <div class="panel">
+    <table id=“table”>
+      <tr>
+        <th>DATA</th>
+        <th>AULA</th>
+        <th>TEMA</th>
+        <th>TÓPICOS</th>
+        <th>RESPONSÁVEL</th>
+        <th>REFERÊNCIAS</th>
+      </tr>
+      <tr>
+        <td>13/02/2025</td>
+        <td>30</td>
+        <td>Algoritmos de decisão diante da gravidez</td>
+        <td>· Acompanhamento do Beta-hCG · Ultrassonografia Transvaginal e Avaliação Obstétrica · Condutas após
+          Diagnóstico Obstétrico Definitivo</td>
+        <td><a href="#form" onclick="redirectToForm(30)">Responsável</a></td>
+        <td>Referências</td>
+      </tr>
+      <tr>
+        <td>27/02/2025</td>
+        <td>31</td>
+        <td>Encerramento</td>
+        <td>• Avaliação e feedback</td>
+        <td></td>
+        <td>[Referências]</td>
+      </tr>
+    </table>
+  </div>
+  </div>
+  <form id="form" style="background: radial-gradient(circle 340px at 45% 55%, #82000055, #690000), radial-gradient(circle 90px at 75% 70%, #bd955c, #dbc194), radial-gradient(circle 130px at 15% 85%, #820000aa, #bd055c);
+      color: #ffffff; 
+      font-weight: 600;
+      font-family: 'Josefin Sans', sans-serif;
+      cursor: pointer;
+      padding: 20px;
+      border-bottom: 3px ridge #dbc194;
+      text-align: right;
+      outline: none;
+      font-size: 16px;
+      transition: filter 0.8s ease-in-out;
+      z-index: 9;">
+    E-mail Institucional: <input type="email" id="email" name="e-mail" placeholder="@engravida.com.br"
+      style="border: 2px ridge #dbc194; background: radial-gradient(circle 340px at 45% 55%, #82000055, #bd955c), radial-gradient(circle 90px at 75% 70%, #faded2, #dbc194), radial-gradient(circle 130px at 15% 85%, #820000aa, #dbc194); margin: 5px; backdrop-filter: blur(90px); padding: 10px; color: #faded2; opacity:0.5;"><br>
+    Quero ser responsável pela aula: <input type="number" id="numero" name="número" min="1" max="30"
+      style="border: 2px ridge #dbc194; background: radial-gradient(circle 340px at 45% 55%, #82000055, #bd955c), radial-gradient(circle 90px at 75% 70%, #faded2, #dbc194), radial-gradient(circle 130px at 15% 85%, #820000aa, #dbc194); margin: 5px; padding: 10px; backdrop-filter: blur(90px); color: #faded2;opacity: 0.5;"><br>
+    Quero sugerir a aula: <input type="text" id="sugestao" name="sugestao"
+      style="border: 2px ridge #dbc194; background: radial-gradient(circle 340px at 45% 55%, #82000055, #bd955c), radial-gradient(circle 90px at 75% 70%, #faded2, #dbc194), radial-gradient(circle 130px at 15% 85%, #820000aa, #dbc194); margin: 5px; backdrop-filter: blur(90px); padding: 10px; color: #faded2; opacity: 0.5;"><br>
+    Data da aula: <input type="date" id="data" name="data"
+      style="border: 2px ridge #dbc194; background: radial-gradient(circle 340px at 45% 55%, #82000055, #bd955c), radial-gradient(circle 90px at 75% 70%, #faded2, #dbc194), radial-gradient(circle 130px at 15% 85%, #820000aa, #dbc194); margin: 5px; backdrop-filter: blur(90px); padding: 10px; color: #faded2; opacity: 0.5;"><br>
+    <input type="submit" value="Enviar" style="background: radial-gradient(circle 340px at 45% 55%, #82000055, #690000), radial-gradient(circle 90px at 75% 70%, #bd955c, #dbc194), radial-gradient(circle 130px at 15% 85%, #820000aa, #bd055c);
+          border: 3px groove #dbc194;
+          color: #ffffff;
+          font-weight: 600;
+          font-family: 'Josefin Sans', sans-serif;
+          cursor: pointer;
+          padding: 10px;
+          text-align: center;
+          font-size: 16px;
+          transition: filter 0.8s ease-in-out;
+          margin-top: 10px;
+          z-index: 9;
+          opacity: 0.8;">
+  </form>
+  <table id="tabela">
+    <tr>
+      <th>Data</th>
+      <th>Número</th>
+      <th>Sugestão</th>
+      <th>Email</th>
+    </tr>
+  </table>
+    <script type="module">
+      import { initializeApp } from "firebase/app";
+      import { getDatabase, ref, set, push, onValue } from "firebase/database";
+
+      // Configuração do Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyAIRenRvhMUh0s6AqdhbeRGT6kkvdfrFRA",
+        authDomain: "engravidaexpertise-44ce1.firebaseapp.com",
+        databaseURL: "https://engravidaexpertise-default-rtdb.firebaseio.com",
+        projectId: "engravidaexpertise",
+        storageBucket: "engravidaexpertise.appspot.com",
+        messagingSenderId: "793216440057",
+        appId: "1:793216440057:web:ad972489cfcd2a003af428"
+      };
+
+      // Inicialização do Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+
+      function addSubscription(email, number) {
+        const subscriptionsRef = ref(database, 'subscriptions');
+        push(subscriptionsRef, { email, number }).catch((error) => {
+          console.error("Falha no envio:", error);
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        // Acordeão
+        document.querySelectorAll('.accordion').forEach(function (acc) {
+          acc.addEventListener('click', function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight){
+              panel.style.maxHeight = null;
+            } else {
+              panel.style.maxHeight = panel.scrollHeight + "px";
+            } 
+          });
+        });
+
+        // Preenchimento automático e rolagem suave para o formulário
+        document.querySelectorAll('a[href="#form"]').forEach(function (link) {
+          link.addEventListener('click', function () {
+            var numero = this.parentNode.parentNode.cells[1].innerText.trim();
+            document.getElementsByName("número")[0].value = numero;
+            document.getElementById('form').scrollIntoView({ behavior: 'smooth' });
+          });
+        });
+
+        // Submissão do formulário
+        document.querySelector('form').addEventListener('submit', function (event) {
+          event.preventDefault();
+          var email = document.getElementById('email').value;
+          var numero = document.getElementsByName('número')[0].value;
+          adicionarLinhaTabela(numero, email);
+          addSubscription(email, numero);
+        });
+
+        function adicionarLinhaTabela(numero, email) {
+          var tabela = document.getElementById('tabela');
+          var row = tabela.insertRow(-1);
+          var cellNumero = row.insertCell(0);
+          var cellEmail = row.insertCell(1);
+          cellNumero.textContent = numero;
+          cellEmail.textContent = email;
+        }
+      });
+
+      // Funções auxiliares, caso deseje expô-las
+      window.addSubscription = addSubscription;
+    </script>
+
+</body>
+
+</html>
